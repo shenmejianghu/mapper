@@ -142,3 +142,49 @@ public class User1Id {
 public interface User1Mapper extends BaseMapper<User1,User1Id> {
 }
 ```
+
+### 1.4 注解说明
+1. @Table
+```java
+public @interface Table {
+    //表名，不指定则使用实体类名
+    String value() default "";
+}
+```
+3. @Column
+```java
+public @interface Column {
+    //对应数据库列名
+    String value() default "";
+    //查询过滤类型
+    FilterOperator filterOperator() default FilterOperator.EQ;
+    //是否查询，select是否带上该字段
+    boolean selectable() default true;
+    //是否插入，insert是否带上该字段
+    boolean insertable() default true;
+    //是否更新，update是否带上该字段
+    boolean updatable() default true;
+}
+```
+5. @Id
+```java
+public @interface Id {
+    //主键是否自动生成
+    boolean auto() default false;
+}
+```
+7. @OrderBy
+```java
+public @interface OrderBy {
+    //排序
+    Order order() default Order.ASC;
+    //多个排序字段先后顺序
+    int orderPriority() default 0;
+}
+```
+9. @Transient
+```java
+//非数据库字段需加上该注解
+public @interface Transient {
+}
+```
