@@ -1,4 +1,4 @@
-# MyBatis Mapper
+# 通用 Mapper
 
 基于 **mybatis/provider**实现的通用 Mapper。
 
