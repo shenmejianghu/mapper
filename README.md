@@ -144,7 +144,7 @@ public interface User1Mapper extends BaseMapper<User1,User1Id> {
 }
 ```
 
-### 1.4 注解说明
+## 2. 注解说明
 1. @Table
 ```java
 public @interface Table {
