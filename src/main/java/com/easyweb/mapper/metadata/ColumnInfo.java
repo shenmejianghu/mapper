@@ -6,7 +6,7 @@ import com.easyweb.mapper.annotation.Order;
 import java.lang.reflect.Field;
 
 /**
- * Created by lipan on 2022/9/6.
+ * Created by shenmejianghu on 2022/9/6.
  */
 public class ColumnInfo {
     //对应的java类型

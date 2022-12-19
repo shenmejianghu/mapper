@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by lipan on 2022/9/3.
+ * Created by shenmejianghu on 2022/9/3.
  */
 public interface BaseMapper<T,K> {
 

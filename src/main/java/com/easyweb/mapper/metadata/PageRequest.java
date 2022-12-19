@@ -1,7 +1,7 @@
 package com.easyweb.mapper.metadata;
 
 /**
- * Created by lipan on 2022/9/5.
+ * Created by shenmejianghu on 2022/9/5.
  */
 public class PageRequest<T> {
     private Integer pageIndex;

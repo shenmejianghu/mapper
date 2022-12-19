@@ -1,7 +1,7 @@
 package com.easyweb.mapper.annotation;
 
 /**
- * Created by lipan on 2022/9/6.
+ * Created by shenmejianghu on 2022/9/6.
  */
 public enum FilterOperator {
     EQ(0),

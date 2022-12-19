@@ -3,7 +3,7 @@ package com.easyweb.mapper.metadata;
 import java.util.List;
 
 /**
- * Created by lipan on 2022/12/18.
+ * Created by shenmejianghu on 2022/12/18.
  */
 public class PageData<T> {
     private List<T> rows;

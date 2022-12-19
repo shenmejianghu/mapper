@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Created by lipan on 2022/9/3.
+ * Created by shenmejianghu on 2022/9/3.
  */
 public class SqlProvider<T> {
     private static Logger logger = LoggerFactory.getLogger(SqlProvider.class);
