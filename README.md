@@ -152,7 +152,7 @@ public @interface Table {
     String value() default "";
 }
 ```
-3. @Column
+2. @Column
 ```java
 public @interface Column {
     //对应数据库列名
@@ -167,14 +167,14 @@ public @interface Column {
     boolean updatable() default true;
 }
 ```
-5. @Id
+3. @Id
 ```java
 public @interface Id {
     //主键是否自动生成
     boolean auto() default false;
 }
 ```
-7. @OrderBy
+4. @OrderBy
 ```java
 public @interface OrderBy {
     //排序
@@ -183,7 +183,7 @@ public @interface OrderBy {
     int orderPriority() default 0;
 }
 ```
-9. @Transient
+5. @Transient
 ```java
 //非数据库字段需加上该注解
 public @interface Transient {
