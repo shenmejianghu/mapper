@@ -100,7 +100,7 @@ public interface UserMapper extends BaseMapper<User, Long> {
     Long selectCount(T entity);
     
 #### 1.4.3 联合主键用法
-1. 实体类，主键自动都加上@Id注解
+1. 实体类，主键字段都加上@Id注解
 
 ```java
 public class User1 {
