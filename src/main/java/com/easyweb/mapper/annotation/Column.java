@@ -13,12 +13,12 @@ import java.lang.annotation.Target;
 public @interface Column {
     //对应数据库列名
     String value() default "";
-    //过滤类型
+    //查询过滤类型
     FilterOperator filterOperator() default FilterOperator.EQ;
-    //是否查询
+    //是否查询，select是否带上该字段
     boolean selectable() default true;
-    //是否插入
+    //是否插入，insert是否带上该字段
     boolean insertable() default true;
-    //是否更新
+    //是否更新，update是否带上该字段
     boolean updatable() default true;
 }

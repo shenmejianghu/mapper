@@ -11,6 +11,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface OrderBy {
+    //排序
     Order order() default Order.ASC;
+    //多个排序字段先后顺序
     int orderPriority() default 0;
 }
