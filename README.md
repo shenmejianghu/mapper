@@ -193,5 +193,7 @@ public @interface Transient {
 ```java
 //需要进行翻译的字段需增加该注解
 public @interface Transient {
+    //使用哪个字典项进行翻译
+    String code();
 }
 ```
