@@ -28,11 +28,11 @@ public class TranslateInterceptor implements Interceptor {
             if (result instanceof List){
                 if (!((List)result).isEmpty()){
                     Class<?> clz = ((List)result).get(0).getClass();
-                    // TODO: 2023/11/21
+                    // TODO: 2023/11/21 找到实体类需要翻译的字段
                 }
             }else {
                 Class<?> clz = result.getClass();
-                // TODO: 2023/11/21
+                // TODO: 2023/11/21 找到实体类需要翻译的字段
             }
         }
         return result;
