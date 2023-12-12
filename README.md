@@ -10,7 +10,7 @@
 
 1. 无需任何配置，继承BaseMapper 即可获得大量的通用方法；
 2. 支持联合主键；
-3. 字典自动翻译（待完成）；
+3. 字典自动翻译（开发中）；
 4. 通用数据权限（待完成）。
 
 ### 1.2 系统要求
@@ -186,6 +186,12 @@ public @interface OrderBy {
 5. @Transient
 ```java
 //非数据库字段需加上该注解
+public @interface Transient {
+}
+```
+6. @Translate
+```java
+//需要进行翻译的字段需增加该注解
 public @interface Transient {
 }
 ```
