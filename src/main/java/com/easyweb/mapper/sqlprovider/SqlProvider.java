@@ -28,7 +28,10 @@ import java.util.stream.Stream;
  */
 public class SqlProvider<T> {
     private static Logger logger = LoggerFactory.getLogger(SqlProvider.class);
+    //存储mapper和TableInfo映射关系
     private static Map<Class<?>, TableInfo> tableCache = new ConcurrentHashMap<>();
+    //存储entity和TableInfo映射关系
+    private static Map<Class<?>, TableInfo> entityCache = new ConcurrentHashMap<>();
 
     public String insert(T entity, ProviderContext context){
         TableInfo tableInfo = getTableInfo(context);
@@ -323,7 +326,16 @@ public class SqlProvider<T> {
 
     private TableInfo getTableInfo(ProviderContext context){
         Class<?> clz = getEntityType(context);
-        return tableCache.computeIfAbsent(context.getMapperType(), t-> Util.tableInfo(clz));
+        TableInfo tableInfo = entityCache.get(clz);
+        if (tableInfo == null){
+            tableInfo = tableCache.get(context.getMapperType());
+        }
+        if (tableInfo == null){
+            tableInfo = Util.tableInfo(clz);
+        }
+        entityCache.putIfAbsent(clz,tableInfo);
+        tableCache.putIfAbsent(context.getMapperType(),tableInfo);
+        return tableInfo;
     }
 
     private Class<?> getEntityType(ProviderContext context) {
