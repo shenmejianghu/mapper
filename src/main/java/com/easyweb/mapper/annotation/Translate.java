@@ -8,5 +8,5 @@ import java.lang.annotation.Target;
 @Target({ java.lang.annotation.ElementType.FIELD })
 public @interface Translate {
     //使用哪个字典项进行翻译
-    String code();
+    String category();
 }
