@@ -29,11 +29,11 @@ public class MemoryTranslateService {
         dictionaryData.put(category,codes);
     }
 
-    public Map<String,String> getByCategory(String category){
+    public static Map<String,String> getByCategory(String category){
         return dictionaryData.get(category);
     }
 
-    public String getByCategoryAndCode(String category,String code){
+    public static String getByCategoryAndCode(String category,String code){
         Map<String,String> map = dictionaryData.get(category);
         if (map != null){
             return map.get(code);

@@ -338,6 +338,10 @@ public class SqlProvider<T> {
         return tableInfo;
     }
 
+    public static TableInfo getTableInfoByEntity(Class<?> clz){
+        return entityCache.get(clz);
+    }
+
     private Class<?> getEntityType(ProviderContext context) {
         return Stream.of(context.getMapperType().getGenericInterfaces())
                 .filter(ParameterizedType.class::isInstance)

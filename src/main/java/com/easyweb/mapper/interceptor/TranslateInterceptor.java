@@ -1,5 +1,7 @@
 package com.easyweb.mapper.interceptor;
 
+import com.easyweb.mapper.metadata.TableInfo;
+import com.easyweb.mapper.sqlprovider.SqlProvider;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.plugin.*;
 
@@ -29,10 +31,18 @@ public class TranslateInterceptor implements Interceptor {
                 if (!((List)result).isEmpty()){
                     Class<?> clz = ((List)result).get(0).getClass();
                     // TODO: 2023/11/21 找到实体类需要翻译的字段
+                    TableInfo tableInfo = SqlProvider.getTableInfoByEntity(clz);
+                    if (tableInfo != null){
+
+                    }
                 }
             }else {
                 Class<?> clz = result.getClass();
                 // TODO: 2023/11/21 找到实体类需要翻译的字段
+                TableInfo tableInfo = SqlProvider.getTableInfoByEntity(clz);
+                if (tableInfo != null){
+
+                }
             }
         }
         return result;
