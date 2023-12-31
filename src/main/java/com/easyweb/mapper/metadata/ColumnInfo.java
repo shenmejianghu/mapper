@@ -28,6 +28,16 @@ public class ColumnInfo {
     private boolean updatable;
     //是否参与select
     private boolean selectable;
+    //字段翻译
+    private TranslateField translateField;
+
+    public TranslateField getTranslateField() {
+        return translateField;
+    }
+
+    public void setTranslateField(TranslateField translateField) {
+        this.translateField = translateField;
+    }
 
     public Class<?> getFieldClass() {
         return fieldClass;
