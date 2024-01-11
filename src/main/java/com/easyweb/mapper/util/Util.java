@@ -3,6 +3,7 @@ package com.easyweb.mapper.util;
 import com.easyweb.mapper.annotation.*;
 import com.easyweb.mapper.metadata.ColumnInfo;
 import com.easyweb.mapper.metadata.TableInfo;
+import com.easyweb.mapper.metadata.TranslateField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
@@ -68,6 +69,23 @@ public class Util {
             if (orderBy != null){
                 columnInfo.setOrderBy(orderBy.order());
                 columnInfo.setOrderByPriority(orderBy.orderPriority());
+            }
+            Translate translate = field.getAnnotation(Translate.class);
+            if (translate != null){
+                String category = translate.category();
+                CacheType cacheType = translate.cacheType();
+                if (StringUtils.isNotEmpty(category)){
+                    TranslateField translateField = new TranslateField();
+                    translateField.setCacheType(cacheType);
+                    translateField.setSrcField(field.getName());
+                    translateField.setDestField(field.getName());
+                    long existDis = Stream.of(allFields)
+                            .filter(f -> f.getName().equals(field.getName()+"Dis")).count();
+                    if (existDis == 1){
+                        translateField.setDestField(field.getName()+"Dis");
+                    }
+                    columnInfo.setTranslateField(translateField);
+                }
             }
             columns.add(columnInfo);
         }
