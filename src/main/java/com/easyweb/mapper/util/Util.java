@@ -76,13 +76,17 @@ public class Util {
                 CacheType cacheType = translate.cacheType();
                 if (StringUtils.isNotEmpty(category)){
                     TranslateField translateField = new TranslateField();
+                    translateField.setCategory(category);
                     translateField.setCacheType(cacheType);
-                    translateField.setSrcField(field.getName());
-                    translateField.setDestField(field.getName());
-                    long existDis = Stream.of(allFields)
-                            .filter(f -> f.getName().equals(field.getName()+"Dis")).count();
-                    if (existDis == 1){
-                        translateField.setDestField(field.getName()+"Dis");
+                    translateField.setSrcField(field);
+                    translateField.setSrcFieldName(field.getName());
+                    translateField.setDestFieldName(field.getName());
+                    translateField.setDestField(field);
+                    Field disField = Stream.of(allFields)
+                            .filter(f -> f.getName().equals(field.getName()+"Dis")).findFirst().orElse(null);
+                    if (disField != null){
+                        translateField.setDestFieldName(field.getName()+"Dis");
+                        translateField.setDestField(disField);
                     }
                     columnInfo.setTranslateField(translateField);
                 }
@@ -116,6 +120,20 @@ public class Util {
         try {
             field.setAccessible(true);
             return field.get(bean);
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        } finally {
+            field.setAccessible(false);
+        }
+    }
+
+    public static void setFieldValue(Object bean, Field field, Object value){
+        if(null == bean) {
+            return;
+        }
+        try {
+            field.setAccessible(true);
+            field.set(bean,value);
         } catch (IllegalAccessException e) {
             throw new IllegalStateException(e);
         } finally {
