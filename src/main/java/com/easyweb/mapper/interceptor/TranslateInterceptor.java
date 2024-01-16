@@ -1,10 +1,10 @@
 package com.easyweb.mapper.interceptor;
 
-import com.easyweb.mapper.annotation.CacheType;
+import com.easyweb.mapper.annotation.TranslateType;
 import com.easyweb.mapper.metadata.ColumnInfo;
 import com.easyweb.mapper.metadata.TableInfo;
 import com.easyweb.mapper.metadata.TranslateField;
-import com.easyweb.mapper.service.MemoryTranslateService;
+import com.easyweb.mapper.service.ITranslator;
 import com.easyweb.mapper.sqlprovider.SqlProvider;
 import com.easyweb.mapper.util.Util;
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +28,10 @@ import java.util.stream.Collectors;
                 args = {Statement.class})
 })
 public class TranslateInterceptor implements Interceptor {
+    private ITranslator translator;
+    public TranslateInterceptor(ITranslator translator){
+        this.translator = translator;
+    }
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         Object target = invocation.getTarget();//被代理对象
@@ -52,15 +56,14 @@ public class TranslateInterceptor implements Interceptor {
                                     TranslateField translateField = columnInfo.getTranslateField();
                                     Field srcField = translateField.getSrcField();
                                     Field destField = translateField.getDestField();
-                                    CacheType cacheType = translateField.getCacheType();
+                                    TranslateType cacheType = translateField.getTranslateType();
                                     Object srcFieldValue = Util.getFieldValue(data,srcField);
                                     if (srcFieldValue != null){
                                         Object translateValue = null;
-                                        if (cacheType == CacheType.MEMORY){
-                                            translateValue = MemoryTranslateService.getByCategoryAndCode(translateField.getCategory(),srcFieldValue.toString());
+                                        if (cacheType == TranslateType.DICTIONARY){
+                                            translateValue = this.translator.getByCategoryAndCode(translateField.getCategory(),srcFieldValue.toString());
                                         }
-                                        if (cacheType == CacheType.REDIS){
-
+                                        if (cacheType == TranslateType.ENUM){
                                         }
                                         if (translateValue != null && StringUtils.isNotEmpty(translateValue.toString())){
                                             Util.setFieldValue(data,destField,translateValue);
@@ -85,14 +88,14 @@ public class TranslateInterceptor implements Interceptor {
                             TranslateField translateField = columnInfo.getTranslateField();
                             Field srcField = translateField.getSrcField();
                             Field destField = translateField.getDestField();
-                            CacheType cacheType = translateField.getCacheType();
+                            TranslateType cacheType = translateField.getTranslateType();
                             Object srcFieldValue = Util.getFieldValue(result,srcField);
                             if (srcFieldValue != null){
                                 Object translateValue = null;
-                                if (cacheType == CacheType.MEMORY){
-                                    translateValue = MemoryTranslateService.getByCategoryAndCode(translateField.getCategory(),srcFieldValue.toString());
+                                if (cacheType == TranslateType.DICTIONARY){
+                                    translateValue = translator.getByCategoryAndCode(translateField.getCategory(),srcFieldValue.toString());
                                 }
-                                if (cacheType == CacheType.REDIS){
+                                if (cacheType == TranslateType.ENUM){
 
                                 }
                                 if (translateValue != null && StringUtils.isNotEmpty(translateValue.toString())){

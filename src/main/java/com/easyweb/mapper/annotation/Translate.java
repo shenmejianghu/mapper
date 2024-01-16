@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @Target({ java.lang.annotation.ElementType.FIELD })
 public @interface Translate {
     //基于内存、redis
-    CacheType cacheType();
+    TranslateType translateType();
     //使用哪个字典项进行翻译
     String category();
 }

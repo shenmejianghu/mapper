@@ -73,11 +73,11 @@ public class Util {
             Translate translate = field.getAnnotation(Translate.class);
             if (translate != null){
                 String category = translate.category();
-                CacheType cacheType = translate.cacheType();
+                TranslateType cacheType = translate.translateType();
                 if (StringUtils.isNotEmpty(category)){
                     TranslateField translateField = new TranslateField();
                     translateField.setCategory(category);
-                    translateField.setCacheType(cacheType);
+                    translateField.setTranslateType(cacheType);
                     translateField.setSrcField(field);
                     translateField.setSrcFieldName(field.getName());
                     translateField.setDestFieldName(field.getName());

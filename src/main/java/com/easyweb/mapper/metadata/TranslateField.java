@@ -1,6 +1,6 @@
 package com.easyweb.mapper.metadata;
 
-import com.easyweb.mapper.annotation.CacheType;
+import com.easyweb.mapper.annotation.TranslateType;
 
 import java.lang.reflect.Field;
 
@@ -17,7 +17,7 @@ public class TranslateField {
     private String destFieldName;
     private Field destField;
     //字典值缓存类型
-    private CacheType cacheType;
+    private TranslateType translateType;
 
     public String getCategory() {
         return category;
@@ -59,11 +59,11 @@ public class TranslateField {
         this.destField = destField;
     }
 
-    public CacheType getCacheType() {
-        return cacheType;
+    public TranslateType getTranslateType() {
+        return translateType;
     }
 
-    public void setCacheType(CacheType cacheType) {
-        this.cacheType = cacheType;
+    public void setTranslateType(TranslateType translateType) {
+        this.translateType = translateType;
     }
 }
