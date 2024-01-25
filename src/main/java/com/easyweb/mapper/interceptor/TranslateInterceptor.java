@@ -29,14 +29,13 @@ import java.util.stream.Collectors;
 })
 public class TranslateInterceptor implements Interceptor {
     private ITranslator translator;
+
     public TranslateInterceptor(ITranslator translator){
         this.translator = translator;
     }
+
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        Object target = invocation.getTarget();//被代理对象
-        Method method = invocation.getMethod();//代理方法
-        Object[] args = invocation.getArgs();//方法参数
         Object result = invocation.proceed();
         if (result != null){
             if (result instanceof List){
