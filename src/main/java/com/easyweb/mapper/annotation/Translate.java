@@ -7,8 +7,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ java.lang.annotation.ElementType.FIELD })
 public @interface Translate {
-    //基于内存、redis
+    //基于字典、枚举
     TranslateType translateType();
     //使用哪个字典项进行翻译
     String category();
+    //使用枚举中的哪个字段
+    String enumKey();
 }

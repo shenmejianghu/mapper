@@ -73,22 +73,31 @@ public class Util {
             Translate translate = field.getAnnotation(Translate.class);
             if (translate != null){
                 String category = translate.category();
+                String enumKey = translate.enumKey();
                 TranslateType cacheType = translate.translateType();
-                if (StringUtils.isNotEmpty(category)){
-                    TranslateField translateField = new TranslateField();
-                    translateField.setCategory(category);
-                    translateField.setTranslateType(cacheType);
-                    translateField.setSrcField(field);
-                    translateField.setSrcFieldName(field.getName());
-                    translateField.setDestFieldName(field.getName());
-                    translateField.setDestField(field);
-                    Field disField = Stream.of(allFields)
-                            .filter(f -> f.getName().equals(field.getName()+"Dis")).findFirst().orElse(null);
-                    if (disField != null){
-                        translateField.setDestFieldName(field.getName()+"Dis");
-                        translateField.setDestField(disField);
+                TranslateField translateField = new TranslateField();
+                translateField.setTranslateType(cacheType);
+                translateField.setSrcField(field);
+                translateField.setSrcFieldName(field.getName());
+                translateField.setDestFieldName(field.getName());
+                translateField.setDestField(field);
+                Field disField = Stream.of(allFields)
+                        .filter(f -> f.getName().equals(field.getName()+"Dis")).findFirst().orElse(null);
+                if (disField != null){
+                    translateField.setDestFieldName(field.getName()+"Dis");
+                    translateField.setDestField(disField);
+                }
+                if (cacheType == TranslateType.DICTIONARY){
+                    if (StringUtils.isNotEmpty(category)){
+                        translateField.setCategory(category);
+                        columnInfo.setTranslateField(translateField);
                     }
-                    columnInfo.setTranslateField(translateField);
+                }
+                if (cacheType == TranslateType.ENUM){
+                    if (StringUtils.isNotEmpty(enumKey)){
+                        translateField.setCategory(category);
+                        columnInfo.setTranslateField(translateField);
+                    }
                 }
             }
             columns.add(columnInfo);

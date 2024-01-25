@@ -8,8 +8,10 @@ import java.lang.reflect.Field;
  * Created by shenmejianghu on 2023/12/31.
  */
 public class TranslateField {
-    //用那个字典项
+    //翻译类型为字典时：用哪个字典项
     private String category;
+    //翻译类型为枚举时：用枚举中哪个字段
+    private String enumKey;
     //要翻译的字段
     private String srcFieldName;
     private Field srcField;
@@ -25,6 +27,14 @@ public class TranslateField {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getEnumKey() {
+        return enumKey;
+    }
+
+    public void setEnumKey(String enumKey) {
+        this.enumKey = enumKey;
     }
 
     public String getSrcFieldName() {
