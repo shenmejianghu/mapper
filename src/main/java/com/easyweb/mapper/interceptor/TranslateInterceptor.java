@@ -63,6 +63,7 @@ public class TranslateInterceptor implements Interceptor {
                                             translateValue = this.translator.getByCategoryAndCode(translateField.getCategory(),srcFieldValue.toString());
                                         }
                                         if (cacheType == TranslateType.ENUM){
+
                                         }
                                         if (translateValue != null && StringUtils.isNotEmpty(translateValue.toString())){
                                             Util.setFieldValue(data,destField,translateValue);

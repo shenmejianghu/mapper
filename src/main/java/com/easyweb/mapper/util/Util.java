@@ -96,6 +96,7 @@ public class Util {
                 if (cacheType == TranslateType.ENUM){
                     if (StringUtils.isNotEmpty(enumKey)){
                         translateField.setEnumKey(category);
+                        translateField.setEnumClass(translate.enumClass());
                         columnInfo.setTranslateField(translateField);
                     }
                 }

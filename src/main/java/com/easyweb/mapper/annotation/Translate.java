@@ -13,4 +13,6 @@ public @interface Translate {
     String category();
     //使用枚举中的哪个字段
     String enumKey();
+    //对应哪个枚举类型
+    Class<?> enumClass();
 }

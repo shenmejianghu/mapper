@@ -12,6 +12,8 @@ public class TranslateField {
     private String category;
     //翻译类型为枚举时：用枚举中哪个字段
     private String enumKey;
+    //翻译类型为枚举时：指定枚举类型
+    Class<?> enumClass;
     //要翻译的字段
     private String srcFieldName;
     private Field srcField;
@@ -35,6 +37,14 @@ public class TranslateField {
 
     public void setEnumKey(String enumKey) {
         this.enumKey = enumKey;
+    }
+
+    public Class<?> getEnumClass() {
+        return enumClass;
+    }
+
+    public void setEnumClass(Class<?> enumClass) {
+        this.enumClass = enumClass;
     }
 
     public String getSrcFieldName() {
