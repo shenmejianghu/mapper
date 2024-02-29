@@ -63,7 +63,9 @@ public class TranslateInterceptor implements Interceptor {
                                             translateValue = this.translator.getByCategoryAndCode(translateField.getCategory(),srcFieldValue.toString());
                                         }
                                         if (cacheType == TranslateType.ENUM){
-
+                                            String enumKey = translateField.getEnumKey();
+                                            Class<?> enumClass = translateField.getEnumClass();
+                                            // TODO: 2024/2/29 根据字段值到枚举类中获取翻译
                                         }
                                         if (translateValue != null && StringUtils.isNotEmpty(translateValue.toString())){
                                             Util.setFieldValue(data,destField,translateValue);
@@ -96,7 +98,9 @@ public class TranslateInterceptor implements Interceptor {
                                     translateValue = translator.getByCategoryAndCode(translateField.getCategory(),srcFieldValue.toString());
                                 }
                                 if (cacheType == TranslateType.ENUM){
-
+                                    String enumKey = translateField.getEnumKey();
+                                    Class<?> enumClass = translateField.getEnumClass();
+                                    // TODO: 2024/2/29 根据字段值到枚举类中获取翻译
                                 }
                                 if (translateValue != null && StringUtils.isNotEmpty(translateValue.toString())){
                                     Util.setFieldValue(result,destField,translateValue);
